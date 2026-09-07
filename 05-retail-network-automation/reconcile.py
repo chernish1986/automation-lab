@@ -38,8 +38,8 @@ def reconcile(rows: list[StoreBalance], tolerance: Decimal = Decimal('0.01')) ->
 
 
 if __name__ == '__main__':
-    demo = [
-        StoreBalance('Store A', Decimal('1250.00'), Decimal('1250.00')),
-        StoreBalance('Store B', Decimal('980.50'), Decimal('978.00')),
+    test_rows = [
+        StoreBalance('Store 01', Decimal('1250.00'), Decimal('1250.00')),
+        StoreBalance('Store 02', Decimal('980.50'), Decimal('978.00')),
     ]
-    print(reconcile(demo))
+    print(reconcile(test_rows))
