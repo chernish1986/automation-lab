@@ -1,14 +1,15 @@
-# Automated Web Scraping, Data Extraction & Monitoring
+# Scraper / change monitor
 
-Demo project for scheduled collection of structured web data, normalization, deduplication, change detection, and export hooks.
+Small scraper used for testing extraction and change-detection logic on public pages.
 
-## Demonstrated skills
-- Python scraping pipelines
-- HTML parsing
-- normalization
-- duplicate detection
-- change tracking
-- CSV/JSON export
-- alert/report integration
+It is useful for quick checks when I need to confirm:
 
-The included example targets static demo HTML and does not bypass authentication, anti-bot controls, or access restrictions.
+- selectors still work
+- values are normalized correctly
+- duplicates are removed
+- a changed value is detected
+- results can be saved or passed to another process
+
+The script is intentionally small so it is easy to modify for a new source.
+
+Status: test utility. Respect the target site's terms, robots rules and request limits before using it against a real source.
