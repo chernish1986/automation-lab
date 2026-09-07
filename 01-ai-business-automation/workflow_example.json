@@ -1,5 +1,5 @@
 {
-  "name": "Lead Qualification Demo",
+  "name": "Lead Qualification Test",
   "nodes": [
     {"type": "webhook", "name": "Receive Lead"},
     {"type": "code", "name": "Validate Input"},
@@ -8,5 +8,5 @@
     {"type": "database", "name": "Persist Lead"},
     {"type": "notification", "name": "Notify Team"}
   ],
-  "notes": "Sanitized portfolio example. Replace placeholders with real credentials and provider nodes in deployment."
+  "notes": "Public test flow. Provider URL and credentials are placeholders."
 }
