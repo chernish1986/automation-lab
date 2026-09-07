@@ -1,14 +1,22 @@
-# Real-Time Python API & WebSocket Monitoring Backend
+# WebSocket backend test
 
-Demo backend showing patterns for long-running real-time services: asynchronous processing, WebSocket reconnects, validation, health checks, structured logs, and persistence hooks.
+Small async backend I use for checking API + WebSocket behaviour before moving the same logic into a larger service.
 
-## Demonstrated skills
-- Python asyncio
-- WebSocket consumers
-- REST API integration
-- reconnect/backoff logic
-- health monitoring
-- structured logging
-- SQLite/SQL persistence patterns
+Main things covered here:
 
-The example is intentionally provider-neutral and safe to publish.
+- HTTP health endpoint
+- WebSocket connection handling
+- simple event broadcast
+- async task lifecycle
+- disconnect cleanup
+- basic logging
+
+Run:
+
+```bash
+uvicorn app:app --reload
+```
+
+Then open the health endpoint or connect a WebSocket client to the configured route.
+
+Status: test service. Good enough for local/VPS checks, not hardened for public production traffic.
