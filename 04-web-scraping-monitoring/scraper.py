@@ -35,5 +35,5 @@ def deduplicate(records: Iterable[Record]) -> list[dict]:
 
 
 if __name__ == '__main__':
-    demo = '''<div data-item><span class="title">Example Product</span><span class="price">$99</span></div>'''
-    print(deduplicate(parse_records(demo)))
+    sample_html = '''<div data-item><span class="title">Test Item</span><span class="price">99.00</span></div>'''
+    print(deduplicate(parse_records(sample_html)))
