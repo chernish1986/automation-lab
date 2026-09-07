@@ -30,4 +30,4 @@ Everything here should run without real credentials in test/dry-run mode. Privat
 
 Rough TODOs and things I still want to check are in `dev_notes.md`.
 
-Open-source references used while testing ideas are listed in `OPEN_SOURCE_REFERENCES.md`.
+Third-party repos checked while comparing approaches are listed in `third_party.md`.
