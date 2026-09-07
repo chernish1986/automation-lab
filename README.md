@@ -1,30 +1,33 @@
 # automation-lab
 
-Small public test utilities I keep around for integration work, API checks and automation experiments.
+Public test utilities for API checks, automation ideas and small integration jobs.
 
-Most of this code is intentionally simple. The point is to have working pieces that can be run, changed and reused when I need to test an idea quickly.
+I keep these scripts simple on purpose. They are easier to reuse when I need to test one part of a bigger system without pulling in the whole project.
 
-Current folders:
+Current workbench:
 
-- `01-ai-business-automation` — webhook -> AI/API routing experiments
-- `02-python-api-websocket-backend` — async API/WebSocket service checks
-- `03-telegram-automation-bot` — Telegram alerts and event delivery
-- `04-web-scraping-monitoring` — extraction/change-monitoring scripts
-- `05-retail-network-automation` — store balance/reconciliation calculations
-- `06-crypto-arbitrage-system` — spread/funding/fee calculation tests
+- `lead-router/` — webhook + AI/API routing test
+- `stream-worker/` — async event/WebSocket worker
+- `tg-alerts/` — Telegram notifier with dry-run mode
+- `page-watch/` — small extraction/change-check script
+- `store-reconcile/` — balance/reconciliation calculator
+- `spread-check/` — cross-exchange spread math
 
-## Running
+## Setup
 
-Python 3.10+ is enough for the Python utilities.
+Python 3.10+.
 
 ```bash
 pip install -r requirements.txt
+cp .env.example .env
 ```
 
-Each folder has its own notes and entry point.
+On Windows just copy `.env.example` to `.env` manually.
 
-## Status
+## Notes
 
-These are public test builds, not production deployments. Credentials, private endpoints and real account data are not stored here.
+Everything here should run without real credentials in test/dry-run mode. Private endpoints, production configs and account data stay outside the repository.
 
-Some ideas were tested against open-source implementations. References and licenses are kept in `OPEN_SOURCE_REFERENCES.md`.
+Rough TODOs and things I still want to check are in `dev_notes.md`.
+
+Open-source references used while testing ideas are listed in `OPEN_SOURCE_REFERENCES.md`.
