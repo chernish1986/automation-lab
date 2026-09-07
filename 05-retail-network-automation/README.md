@@ -1,13 +1,17 @@
-# Retail Network Business Automation & Balance Reconciliation
+# Store reconciliation test
 
-Sanitized demo of operational tooling for a multi-store retail network: customer calculations, consolidated balances, discrepancy detection, and reporting.
+A stripped-down reconciliation script for checking daily store totals and mismatches.
 
-## Demonstrated skills
-- Python business logic
-- multi-location aggregation
-- balance reconciliation
-- discrepancy detection
-- structured reporting
-- data processing and validation
+The original use case was simple: take per-store numbers, compare expected vs actual balance and show where the difference came from.
 
-The demo uses synthetic store and transaction data only.
+Current checks:
+
+- per-store totals
+- expected vs actual balance
+- discrepancy amount
+- combined network total
+- simple output that can later be written to CSV/DB/reporting
+
+The sample values are fake and safe to publish.
+
+Status: working test utility. Real deployments normally add database access, user permissions and a reporting layer around this calculation.
