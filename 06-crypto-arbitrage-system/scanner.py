@@ -35,8 +35,8 @@ def find_opportunity(quotes: list[Quote], min_net_spread_pct: Decimal = Decimal(
 
 
 if __name__ == '__main__':
-    demo_quotes = [
+    test_quotes = [
         Quote('EXCHANGE_A', Decimal('100.00'), Decimal('100.10'), Decimal('0.0005')),
         Quote('EXCHANGE_B', Decimal('100.60'), Decimal('100.70'), Decimal('0.0005')),
     ]
-    print(find_opportunity(demo_quotes))
+    print(find_opportunity(test_quotes))
