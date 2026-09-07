@@ -1,16 +1,20 @@
-# AI & Business Automation with n8n, APIs and AI Agents
+# AI workflow test
 
-Sanitized demo of a business workflow that receives a lead, validates input, classifies the request with an LLM, routes the lead, stores structured data, and triggers notifications.
+Old test flow for checking a simple business automation chain:
 
-## Demonstrated skills
-- n8n workflow architecture
-- REST APIs and webhooks
-- LLM classification and structured JSON output
-- CRM / Airtable / Google Sheets integration patterns
-- Telegram or email notifications
-- retry, validation, and error handling
+`webhook -> normalize input -> AI classification -> route -> external action`
 
-## Typical flow
-`Webhook -> Validate -> AI classify -> Route -> Persist -> Notify`
+The JSON is kept here because it is useful when I need to rebuild the same pattern in n8n without starting from zero.
 
-The included workflow example uses placeholders only and contains no real credentials or client data.
+## What I usually check
+
+- incoming webhook payloads
+- JSON cleanup before the AI call
+- category / priority response format
+- routing by result
+- retry path when an API returns bad JSON
+- notification step after processing
+
+`workflow_example.json` does not contain credentials or real customer data.
+
+Status: usable as a test flow, needs real credentials/endpoints before connecting to any live service.
