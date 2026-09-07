@@ -19,12 +19,11 @@ class RealtimeService:
         self.running = True
 
     async def ingest(self):
-        """Provider-neutral demo producer with reconnect/backoff behavior."""
         delay = 1
         while self.running:
             try:
                 await asyncio.sleep(1)
-                await self.queue.put(Event('demo-websocket', {'type': 'heartbeat'}))
+                await self.queue.put(Event('test-stream', {'type': 'heartbeat'}))
                 delay = 1
             except Exception as exc:
                 log.exception('stream error: %s', exc)
@@ -35,7 +34,7 @@ class RealtimeService:
         while self.running:
             event = await self.queue.get()
             try:
-                log.info('event=%s', json.dumps(event.payload, sort_keys=True))
+                log.info('source=%s event=%s', event.source, json.dumps(event.payload, sort_keys=True))
             finally:
                 self.queue.task_done()
 
