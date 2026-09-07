@@ -1,8 +1,9 @@
 import os
 import requests
 
-TOKEN = os.getenv('TELEGRAM_BOT_TOKEN', 'DEMO_TOKEN')
-CHAT_ID = os.getenv('TELEGRAM_CHAT_ID', 'DEMO_CHAT_ID')
+TOKEN = os.getenv('TELEGRAM_BOT_TOKEN', '')
+CHAT_ID = os.getenv('TELEGRAM_CHAT_ID', '')
+DRY_RUN = os.getenv('DRY_RUN', '1') == '1'
 
 
 def format_alert(level: str, title: str, details: str) -> str:
@@ -10,8 +11,8 @@ def format_alert(level: str, title: str, details: str) -> str:
 
 
 def send_alert(message: str) -> dict:
-    if TOKEN.startswith('DEMO_') or CHAT_ID.startswith('DEMO_'):
-        return {'sent': False, 'mode': 'demo', 'message': message}
+    if DRY_RUN or not TOKEN or not CHAT_ID:
+        return {'sent': False, 'mode': 'dry_run', 'message': message}
 
     response = requests.post(
         f'https://api.telegram.org/bot{TOKEN}/sendMessage',
@@ -23,4 +24,5 @@ def send_alert(message: str) -> dict:
 
 
 if __name__ == '__main__':
-    print(send_alert(format_alert('info', 'Service status', 'All monitored services are healthy.')))
+    msg = format_alert('info', 'Service status', 'All monitored services are healthy.')
+    print(send_alert(msg))
