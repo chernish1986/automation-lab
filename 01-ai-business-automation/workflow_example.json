@@ -1,0 +1,12 @@
+{
+  "name": "Lead Qualification Demo",
+  "nodes": [
+    {"type": "webhook", "name": "Receive Lead"},
+    {"type": "code", "name": "Validate Input"},
+    {"type": "httpRequest", "name": "LLM Classification", "url": "https://api.example.com/llm", "auth": "ENV_PLACEHOLDER"},
+    {"type": "switch", "name": "Route by Score"},
+    {"type": "database", "name": "Persist Lead"},
+    {"type": "notification", "name": "Notify Team"}
+  ],
+  "notes": "Sanitized portfolio example. Replace placeholders with real credentials and provider nodes in deployment."
+}
