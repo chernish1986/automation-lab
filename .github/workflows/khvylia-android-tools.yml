@@ -1,0 +1,44 @@
+name: Prepare Android build tools
+on:
+  push:
+    branches:
+      - build/khvylia-android-tools-20260924
+    paths:
+      - .github/workflows/khvylia-android-tools.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  toolchain:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Prepare minimal Android 35 build toolchain
+        shell: bash
+        run: |
+          set -euo pipefail
+          SDK="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-}}"
+          test -n "$SDK"
+          if [ ! -f "$SDK/platforms/android-35/android.jar" ] || [ ! -f "$SDK/build-tools/35.0.0/lib/d8.jar" ]; then
+            "$SDK/cmdline-tools/latest/bin/sdkmanager" 'platforms;android-35' 'build-tools;35.0.0'
+          fi
+          mkdir -p bundle/sdk/build-tools/35.0.0 bundle/sdk/platforms/android-35 out
+          T="$SDK/build-tools/35.0.0"
+          for f in aapt2 d8 apksigner zipalign core-lambda-stubs.jar lib lib64 NOTICE.txt source.properties; do
+            if [ -e "$T/$f" ]; then cp -a "$T/$f" bundle/sdk/build-tools/35.0.0/; fi
+          done
+          cp "$SDK/platforms/android-35/android.jar" bundle/sdk/platforms/android-35/
+          for f in source.properties package.xml; do
+            if [ -f "$SDK/platforms/android-35/$f" ]; then cp "$SDK/platforms/android-35/$f" bundle/sdk/platforms/android-35/; fi
+          done
+          tar -C bundle -czf out/android-sdk35-minimal.tar.gz sdk
+          sha256sum out/android-sdk35-minimal.tar.gz > out/android-sdk35-minimal.tar.gz.sha256
+          ls -lh out
+      - name: Save build tools for local compilation
+        uses: actions/upload-artifact@v4
+        with:
+          name: khvylia-android-tools-35
+          path: out/*
+          retention-days: 1
+          compression-level: 0
+          if-no-files-found: error
